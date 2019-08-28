@@ -1,24 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
+import {useSelector, useDispatch} from 'react-redux';
 import './App.css';
-
+import {increment, decrement} from './action/action'
 function App() {
+  const counter =useSelector(state=> state.counter);
+  const loggin =useSelector(state=>state.loggin);
+
+  const dispatch= useDispatch()
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Redux</h1>
+      <h1>{counter}</h1>
+      <button onClick={()=> dispatch(increment())} >+</button>
+      <button onClick={()=> dispatch(decrement())}>-</button>
+     <h1>Login</h1>
+      {loggin ? ' ': <h3>I am logged in</h3> }
     </div>
   );
 }
